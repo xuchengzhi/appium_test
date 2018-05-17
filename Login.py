@@ -62,6 +62,8 @@ class Login(object):
 		elif "我的" in self.pg_t:
 			self.login_status="True"
 			print " Already login "
+
+			#com.handwriting.makefont/com.handwriting.makefont.main.ActivityMainCreate
 		else:
 			self.arg.start_activity("com.handwriting.makefont","com.handwriting.makefont.main.SplashActivity")
 	def phone_login(self,username,passwd):
