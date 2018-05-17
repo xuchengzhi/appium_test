@@ -56,13 +56,10 @@ class get_xml(object):
 
 		resource_list = []
 		text_list=[]
-		# 使用minidom解析器打开 XML 文档
 		DOMTree = xml.dom.minidom.parse(xmlfile)
 		collection = DOMTree.documentElement
 		if collection.hasAttribute("rotation"):
 		   print "Root element : %s" % collection.getAttribute("rotation")
-		 
-		# 在集合中获取所有电影
 		tag_list=["android.widget.TextView","android.widget.FrameLayout","android.widget.ImageView","android.widget.RelativeLayout","android.widget.TextView","android.widget.Button","android.view.View"]
 		for i in tag_list:
 			print "*****{}*****".format(i)
@@ -71,16 +68,10 @@ class get_xml(object):
 				if tag_text.hasAttribute("resource-id"):
 					resource_id=tag_text.getAttribute("resource-id")
 					text_ = tag_text.getAttribute("text")
-					# print "text: %s" % (text_)
-					# print "resource_id: %s" % resource_id
 					lei = tag_text.getAttribute("class")
-					# print "lei: %s" % lei
 					package = tag_text.getAttribute("package")
-					# print "package: %s" % package
 					bounds = tag_text.getAttribute("bounds")
-					# print "bounds: %s" % bounds
 					index = tag_text.getAttribute("index")
-					# print "index: %s" % index
 					resource_list.append(resource_id)
 					text_list.append(text_)
 		return {"resource_id":resource_list,"text_list":text_list}

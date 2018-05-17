@@ -11,6 +11,8 @@ import time
 def str_sub(content,num):
     ct = content.replace('[','').replace(']','')
     return ct.split(':')[num].strip()
+def app_clear():
+    os.system("adb shell pm clear com.handwriting.makefont")
 
 def get_serialno():
     """

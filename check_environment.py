@@ -21,5 +21,3 @@ def check():
             print("Appium Environment...................Pass.")
         else:
             print("Appium Environment...................Fail.")
-
-check()

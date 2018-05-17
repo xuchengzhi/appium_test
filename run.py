@@ -6,6 +6,8 @@ __version__ = "v1.0.1"
 import os
 import sys
 import time
+from conf.check_py_model import checkmodel
+checkmodel()
 import unittest
 from configparser import ConfigParser
 from selenium import webdriver
@@ -18,7 +20,7 @@ import datetime
 from common.Action import create_file
 from Home import Home_Action
 from CreateFont import El_chuangjianziti
-
+from conf.Systemlanguage import set_utf
 nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 home_path=os.getcwd()
 
@@ -76,10 +78,9 @@ class ProductInformation(unittest.TestCase):
         Home_Action(self.driver).El_chuanjianzit()
         screenshot(self.driver,"zitirukou")
         time.sleep(1)
-        El_chuangjianziti(self.driver).writefont("xuchengzhi")
+        El_chuangjianziti(self.driver).writefont("许成志的公司根深蒂固","司法局噢第三方奇偶时候")
     def test_login(self):
         Login(self.driver).phone_login("13912345678","112233")
-        
         # if "方正手迹平台协议" not in pg_home_nologin :
         #     time.sleep(3)
         # el_id_click(self.driver,cfg.get('Home','El_MobileLogin'))

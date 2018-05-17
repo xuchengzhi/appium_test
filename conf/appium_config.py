@@ -1,5 +1,4 @@
 # -*- coding:utf-8 -*-
-
 import os
 import sys
 import time
@@ -56,7 +55,7 @@ else :
 def appium_start():
     if platform.system()=="Windows":
         if win_app_status() is True:
-            print("Appium Alreay Start")
+            print("Appium Already Start")
         else :
             os.popen(appium_cmd)
             t_n=1
@@ -71,7 +70,7 @@ def appium_start():
             print("Appium is Start")
     else :
         if linux_appium_status() is True :
-            print("Appium Alreay Start")
+            print("Appium  Already Start")
         else :
             t_n=1
             print("try start appium")
@@ -86,8 +85,6 @@ def appium_start():
 
     config = {
         'platformName':'Android',
-        # 'platformVersion':'6.0.1',
-        # 'deviceName':'3e831d98',
         'platformVersion':os_version,
         'deviceName':device_id,
         'appPackage':'com.handwriting.makefont',
@@ -98,7 +95,4 @@ def appium_start():
         'unicodeKeyboard':True,
         'autoAcceptAlerts':True,
         'resetKeyboard':True}
-
-
     return webdriver.Remote('http://localhost:4723/wd/hub', config)
-    # return webdriver.Remote('http://192.168.248.177:4723/wd/hub', config)

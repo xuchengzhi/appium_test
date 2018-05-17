@@ -47,8 +47,3 @@ class Home_Action(object):
 		el_id_click(self.arg,cfg.get('shouye','el_discover'))
 	def El_xieyi(self):
 		el_id_click(self.arg,cfg.get('shouye','agreement'))
-
-dirver = appium_start()
-# print("qidong activity")
-# dirver.wait_activity("com.handwriting.makefont/com.handwriting.makefont.personal.ActivityEditInfoChangeEmail.avtivity",10,1)
-# print ("end")
