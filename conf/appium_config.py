@@ -25,7 +25,7 @@ os_version = os.popen('adb -s {0} shell getprop ro.build.version.release'.format
 
 if platform.system()=="Windows":
     adb_devices_cmd="adb devices"
-    appium_cmd="start cmd /K appium --no-reset >{}/logs/appium.log".format(home_path)
+    appium_cmd="start cmd /K appium --no-reset".format(home_path)
     reload(sys)
     sys.setdefaultencoding("utf-8")
     def win_app_status():
