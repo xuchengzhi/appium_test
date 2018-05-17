@@ -1,0 +1,244 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>zuopin &#8212; shoujizaozi_API 1.0 文档</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>zuopin 源代码</h1><div class="highlight"><pre>
+<span></span><span class="c1">#-*-coding:utf-8-*-</span>
+
+<span class="c1">#第三方引用包部分</span>
+<span class="kn">import</span> <span class="nn">os</span><span class="o">,</span><span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">urllib</span>
+<span class="kn">import</span> <span class="nn">urllib2</span>
+<span class="kn">import</span> <span class="nn">ssl</span>
+<span class="kn">import</span> <span class="nn">random</span>
+<span class="kn">import</span> <span class="nn">base64</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">time</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+<span class="kn">import</span> <span class="nn">StringIO</span>
+<span class="kn">import</span> <span class="nn">pycurl</span>
+<span class="kn">import</span> <span class="nn">cookielib</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">redis</span>
+<span class="kn">import</span> <span class="nn">multiprocessing</span>
+
+<span class="c1">#本地引用</span>
+<span class="kn">from</span> <span class="nn">Api</span> <span class="k">import</span> <span class="n">Run</span>
+<span class="kn">from</span> <span class="nn">handwriting_api</span> <span class="k">import</span> <span class="o">*</span>
+<span class="c1"># import des</span>
+<span class="n">reload</span><span class="p">(</span><span class="n">sys</span><span class="p">)</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">setdefaultencoding</span><span class="p">(</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+
+<span class="n">t_time</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">*</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="n">riqi</span><span class="o">=</span><span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> </span><span class="si">%X</span><span class="s1">&#39;</span>
+<span class="n">time_now</span><span class="o">=</span><span class="n">time</span><span class="o">.</span><span class="n">localtime</span><span class="p">()</span>
+<span class="n">stat_time</span><span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="n">riqi</span><span class="p">,</span><span class="n">time_now</span><span class="p">)</span>
+<span class="n">start_time</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="n">app_sys</span><span class="o">=</span><span class="s2">&quot;T_iOS11.1&quot;</span>
+<div class="viewcode-block" id="works"><a class="viewcode-back" href="../index.html#zuopin.works">[文档]</a><span class="k">class</span> <span class="nc">works</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;docstring for works</span>
+<span class="sd">	   作品相关接口</span>
+
+<span class="sd">	   anthor: xuchengzhi</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+
+	<span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">arg</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">arg</span><span class="o">=</span><span class="n">arg</span>
+
+<div class="viewcode-block" id="works.create_works"><a class="viewcode-back" href="../index.html#zuopin.works.create_works">[文档]</a>	<span class="k">def</span> <span class="nf">create_works</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url</span><span class="p">,</span><span class="n">user_id</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		接口名称：创建作品</span>
+
+<span class="sd">		加密规则： md5(user_id + md5(sys + t))</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="n">data</span><span class="o">=</span><span class="p">{}</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">t_time</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="n">user_id</span><span class="o">+</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="n">app_sys</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">t_time</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;sys&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">app_sys</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">/mobile.php?c=Sjproduction&amp;a=s_production&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">user_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;p_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+		<span class="n">req</span><span class="o">=</span><span class="n">Run</span><span class="o">.</span><span class="n">url_run</span><span class="p">(</span><span class="s2">&quot;create_works&quot;</span><span class="p">,</span><span class="s2">&quot;post&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+		<span class="n">req</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">req</span><span class="p">)</span>
+		<span class="k">if</span> <span class="s2">&quot;id&quot;</span> <span class="ow">in</span> <span class="n">req</span><span class="p">:</span>
+			<span class="k">return</span> <span class="n">req</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">)</span>
+		<span class="k">else</span> <span class="p">:</span>
+			<span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="s2">&quot;创建作品失败&quot;</span><span class="p">)</span></div>
+			
+
+		 
+<div class="viewcode-block" id="works.update_works"><a class="viewcode-back" href="../index.html#zuopin.works.update_works">[文档]</a>	<span class="k">def</span> <span class="nf">update_works</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url</span><span class="p">,</span><span class="n">user_id</span><span class="p">,</span><span class="n">p_id</span><span class="p">,</span><span class="n">s_name</span><span class="p">,</span><span class="n">s_author</span><span class="p">,</span><span class="n">s_size</span><span class="p">,</span><span class="n">model_id</span><span class="p">,</span><span class="n">ziku_list</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		接口名称：更新作品</span>
+
+<span class="sd">		加密规则：md5($user_id . md5($sys . $t) . $p_id);</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="n">data</span><span class="o">=</span><span class="p">{}</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">/mobile.php/Sjproduction/update_production&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">t_time</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="n">user_id</span><span class="o">+</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="n">app_sys</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">t_time</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span><span class="o">+</span><span class="n">p_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;s_name&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">s_name</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;s_author&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">s_author</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;model_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">model_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;s_size&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">s_size</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;ziku_list&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">ziku_list</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;sys&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">app_sys</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">user_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;production_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">p_id</span>
+		<span class="n">req</span><span class="o">=</span><span class="n">Run</span><span class="o">.</span><span class="n">url_run</span><span class="p">(</span><span class="s2">&quot;update_works&quot;</span><span class="p">,</span><span class="s2">&quot;post&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">data</span><span class="p">)</span></div>
+<div class="viewcode-block" id="works.get_product_list"><a class="viewcode-back" href="../index.html#zuopin.works.get_product_list">[文档]</a>	<span class="k">def</span> <span class="nf">get_product_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url</span><span class="p">,</span><span class="n">user_id</span><span class="p">,</span><span class="n">target_id</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		接口名称：获取作品列表</span>
+<span class="sd">		</span>
+<span class="sd">		user_id 当前登录用户id</span>
+
+<span class="sd">		target_id 个人主页的用户id，如果是进入自己的个人主页和user_id一样</span>
+
+<span class="sd">		加密规则为： md5($t . md5($uid . $target_id) . $sys);</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="n">data</span><span class="o">=</span><span class="p">{}</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;http://</span><span class="si">{}</span><span class="s2">/mobile.php/Homepage/get_production&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">user_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;target_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">target_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">t_time</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t_time</span><span class="p">)</span><span class="o">+</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="n">user_id</span><span class="o">+</span><span class="n">target_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span><span class="o">+</span><span class="n">app_sys</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;sys&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">app_sys</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;last_proid&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;&quot;</span>
+		<span class="n">req</span><span class="o">=</span><span class="n">Run</span><span class="o">.</span><span class="n">url_run</span><span class="p">(</span><span class="s2">&quot;get_product_list&quot;</span><span class="p">,</span><span class="s2">&quot;post&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span></div>
+<div class="viewcode-block" id="works.report_works"><a class="viewcode-back" href="../index.html#zuopin.works.report_works">[文档]</a>	<span class="k">def</span> <span class="nf">report_works</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">url</span><span class="p">,</span><span class="n">target_id</span><span class="p">,</span><span class="n">user_id</span><span class="p">,</span><span class="n">product_id</span><span class="p">):</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		接口： 举报作品</span>
+<span class="sd">		</span>
+<span class="sd">		target_id 被举报人id</span>
+
+<span class="sd">		user_id 举报人id</span>
+
+<span class="sd">		product_id 作品id</span>
+
+<span class="sd">		sys 当前操作系统</span>
+
+<span class="sd">		t 时间戳</span>
+
+<span class="sd">		token 加密后的字符串</span>
+
+<span class="sd">		加密方式：md5($t .$product_id. md5($user_id . $target_id) . $sys)</span>
+
+<span class="sd">		anthor ：xuchengzhi</span>
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="n">data</span><span class="o">=</span><span class="p">{}</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;http://hwdev.xiezixiansheng.com/mobile.php/Sjproduction/report_prodution&quot;</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;target_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">target_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;user_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">user_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;product_id&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">product_id</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;sys&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">app_sys</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">t_time</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">t_time</span><span class="p">)</span><span class="o">+</span><span class="n">product_id</span><span class="o">+</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="n">user_id</span><span class="o">+</span><span class="n">target_id</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span><span class="o">+</span><span class="n">app_sys</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span>
+		<span class="n">req</span><span class="o">=</span><span class="n">Run</span><span class="o">.</span><span class="n">url_run</span><span class="p">(</span><span class="s2">&quot;report_works&quot;</span><span class="p">,</span><span class="s2">&quot;post&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">req</span><span class="p">)</span></div>
+<div class="viewcode-block" id="works.huoqumoban"><a class="viewcode-back" href="../index.html#zuopin.works.huoqumoban">[文档]</a>	<span class="k">def</span> <span class="nf">huoqumoban</span><span class="p">():</span>
+		<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">		接口：获取模板 </span>
+
+<span class="sd">		参数1: sys 操作系统</span>
+
+<span class="sd">		参数2: t 时间戳</span>
+
+<span class="sd">		参数3: page 默认第一页,展示10页</span>
+
+<span class="sd">		参数4: token 加密后的字符串</span>
+
+<span class="sd">		加密规则： md5(g_model . md5($sys . $t) );</span>
+
+<span class="sd">		&#39;&#39;&#39;</span>
+		<span class="n">data</span><span class="o">=</span><span class="p">{}</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;url&quot;</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;http://hwdev.xiezixiansheng.com/mobile.php/Sjproduction/g_model&quot;</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;sys&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">app_sys</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;t&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">t_time</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;token&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="s2">&quot;g_model&quot;</span><span class="o">+</span><span class="n">Font_api</span><span class="o">.</span><span class="n">get_md5</span><span class="p">(</span><span class="n">app_sys</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">t_time</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;token&quot;</span><span class="p">)</span>
+		<span class="n">data</span><span class="p">[</span><span class="s2">&quot;page&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">page</span>
+		<span class="n">req</span><span class="o">=</span><span class="n">Run</span><span class="o">.</span><span class="n">url_run</span><span class="p">(</span><span class="s2">&quot;huoqumoban&quot;</span><span class="p">,</span><span class="s2">&quot;get&quot;</span><span class="p">,</span><span class="o">**</span><span class="n">data</span><span class="p">)</span></div></div>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+	<span class="n">url_test</span><span class="o">=</span><span class="s2">&quot;hwdev.xiezixiansheng.com&quot;</span>
+	<span class="n">shoujizaozi_api</span><span class="o">=</span><span class="n">works</span><span class="p">(</span><span class="s2">&quot;md5&quot;</span><span class="p">)</span>
+	<span class="n">Run</span><span class="o">=</span><span class="n">Run</span><span class="p">()</span>
+	<span class="n">user_id</span><span class="o">=</span><span class="p">[</span><span class="mi">3621</span><span class="p">,</span><span class="mi">3623</span><span class="p">,</span><span class="mi">3632</span><span class="p">,</span><span class="mi">3637</span><span class="p">,</span><span class="mi">3658</span><span class="p">,</span><span class="mi">3661</span><span class="p">,</span><span class="mi">3665</span><span class="p">,</span><span class="mi">3667</span><span class="p">,</span><span class="mi">3668</span><span class="p">]</span>
+	<span class="n">zuopin_id</span><span class="o">=</span><span class="n">shoujizaozi_api</span><span class="o">.</span><span class="n">create_works</span><span class="p">(</span><span class="n">url_test</span><span class="p">,</span><span class="s2">&quot;2409&quot;</span><span class="p">)</span>
+	<span class="n">shoujizaozi_api</span><span class="o">.</span><span class="n">update_works</span><span class="p">(</span><span class="n">url_test</span><span class="p">,</span><span class="s2">&quot;2409&quot;</span><span class="p">,</span><span class="n">zuopin_id</span><span class="p">,</span><span class="s2">&quot;今天天气不错&quot;</span><span class="p">,</span><span class="s2">&quot;阿卜杜拉.二狗子&quot;</span><span class="p">,</span><span class="s2">&quot;45&quot;</span><span class="p">,</span><span class="s2">&quot;1&quot;</span><span class="p">,</span><span class="s2">&quot;2564&quot;</span><span class="p">)</span>
+	<span class="c1"># shoujizaozi_api.report_works(url_test,&quot;2409&quot;,&quot;3621&quot;,&quot;20&quot;)</span>
+	<span class="c1"># shoujizaozi_api.get_product_list(url_test,&quot;3621&quot;,&quot;2409&quot;)</span>
+	<span class="c1"># handwriting_api.recommend_list(url_test,&quot;2409&quot;,&quot;&quot;)</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">模块代码</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, xuchengzhi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
