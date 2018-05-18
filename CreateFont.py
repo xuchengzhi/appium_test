@@ -65,7 +65,10 @@ class El_chuangjianziti(object):
 		f=open(home_path+"/"+log_.get('log','path')+"/chuangjianziti.xml","w")
 		f.write(changecode(self.arg.page_source))
 		f.close()
-		print(changecode(self.arg.page_source))
+		pgs=(changecode(self.arg.page_source))
+		print(type(pgs))
+		print("*"*10)
+		print(pgs)
 		time.sleep(2)
 		screenshot(self.arg,"huidaoshouye")
 	def camrefont_pen(self,fontname):

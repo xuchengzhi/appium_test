@@ -22,6 +22,7 @@ from Home import Home_Action
 from CreateFont import El_chuangjianziti
 from conf.Systemlanguage import set_utf
 set_utf()
+from common.Get_font import hanzi
 
 nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 home_path=os.getcwd()
@@ -79,7 +80,7 @@ class ProductInformation(unittest.TestCase):
         Home_Action(self.driver).El_chuanjianzit()
         screenshot(self.driver,"zitirukou")
         time.sleep(1)
-        El_chuangjianziti(self.driver).writefont("许成志的公司根深蒂固","司法局噢第三方奇偶时候")
+        El_chuangjianziti(self.driver).writefont(hanzi(3),hanzi(10))
     def test_login(self):
         Login(self.driver).phone_login("13912345678","112233")
         # if "方正手迹平台协议" not in pg_home_nologin :

@@ -100,4 +100,8 @@ def appium_start():
         'unicodeKeyboard':True,
         'autoAcceptAlerts':True,
         'resetKeyboard':True}
-    return webdriver.Remote('http://localhost:4723/wd/hub', config)
+    try:
+          return webdriver.Remote('http://localhost:4723/wd/hub', config)
+    except Exception, e:
+          os.exit("appium error please restart") 
+    
