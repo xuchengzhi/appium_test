@@ -21,6 +21,8 @@ from common.Action import create_file
 from Home import Home_Action
 from CreateFont import El_chuangjianziti
 from conf.Systemlanguage import set_utf
+set_utf()
+
 nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 home_path=os.getcwd()
 
@@ -52,7 +54,6 @@ class ProductInformation(unittest.TestCase):
     @classmethod
     def setUpClass(self):
         self.driver = appium_start()
-
         screenshot(self.driver,"app_start")
         # self.driver.get_screenshot_as_file("ddd.png")
         # dev_=unlocks(self.driver)

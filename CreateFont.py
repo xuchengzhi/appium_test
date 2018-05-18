@@ -16,6 +16,8 @@ import datetime
 from common.Action import *
 from Home import *
 from conf.Systemlanguage import set_utf
+set_utf()
+from common.Changecodes import changecode
 
 
 nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -61,9 +63,9 @@ class El_chuangjianziti(object):
 		screenshot(self.arg,"kaishixiezi")
 		time.sleep(2)
 		f=open(home_path+"/"+log_.get('log','path')+"/chuangjianziti.xml","w")
-		f.write(self.arg.page_source)
+		f.write(changecode(self.arg.page_source))
 		f.close()
-		self.arg.start_activity("com.handwriting.makefont","com.handwriting.makefont.main.SplashActivity")
+		print(changecode(self.arg.page_source))
 		time.sleep(2)
 		screenshot(self.arg,"huidaoshouye")
 	def camrefont_pen(self,fontname):

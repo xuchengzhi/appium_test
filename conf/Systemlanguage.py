@@ -13,4 +13,4 @@ def set_utf():
 		sys.setdefaultencoding("utf-8")
 	else :
 		reload(sys)
-		sys.setdefaultencoding("utf-8")
+		sys.setdefaultencoding("utf-8")	

@@ -14,6 +14,10 @@ from common.unlock import unlocks
 from common.utils import *
 import datetime
 from common.Action import *
+from common.Changecodes import changecode
+from conf.Systemlanguage import set_utf
+set_utf()
+
 nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 #读取config.ini
 log_=ConfigParser()
@@ -47,11 +51,11 @@ class Login(object):
 		time.sleep(5)
 		self.pg_home_nologin=(self.arg.page_source)
 		f=open(home_path+"/"+log_.get('log','path')+"/nologin.xml","w")
-		f.write(self.pg_home_nologin)
+		f.write(self.pg_home_nologin.encode('utf-8'))
 		f.close()
 		self.pg_t=get_xml(home_path).test("nologin.xml").get("text_list")
 		for i in self.pg_t:
-			print i
+			print changecode(i)
 		if '跳过' in self.pg_t:
 			time.sleep(5)
 			if "我的" in self.arg.page_source:
@@ -63,7 +67,7 @@ class Login(object):
 			self.login_status="True"
 			print " Already login "
 
-			#com.handwriting.makefont/com.handwriting.makefont.main.ActivityMainCreate
+			#com.handwriting.makefont/com.handwriting.makefont.settings.ActivityRecommend
 		else:
 			self.arg.start_activity("com.handwriting.makefont","com.handwriting.makefont.main.SplashActivity")
 	def phone_login(self,username,passwd):

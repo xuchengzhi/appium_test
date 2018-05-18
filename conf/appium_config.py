@@ -6,7 +6,7 @@ import re
 from appium import webdriver
 import platform
 import datetime
-
+from conf.Systemlanguage import set_utf
 _path=os.getcwd()
 
 nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -37,7 +37,7 @@ if platform.system()=="Windows":
             return False
 elif platform.system()=="Linux":
     adb_devices_cmd="adb devices"
-    appium_cmd="nuhup appium >/usr/local/logs/appium_{}.log 2>1 &".format(nowtime)
+    appium_cmd="nohup appium >/usr/local/logs/appium_{}.log 2>1 &".format(nowtime)
     def linux_appium_status():
         appium_ps="ps -aux | grep node"
         appium_list=os.popen(appium_ps).read().split()
@@ -66,12 +66,15 @@ def appium_start():
                 sys.stdout.flush()
                 t_n+=1
                 time.sleep(t_n)
+                if t_n>10 and win_app_status() is False:
+                    os.exit("appium start fail")
             print("\n")
             print("Appium is Start")
     else :
         if linux_appium_status() is True :
             print("Appium  Already Start")
         else :
+            os.popen(appium_cmd)
             t_n=1
             print("try start appium")
             while linux_appium_status() is False:
@@ -80,6 +83,8 @@ def appium_start():
                 sys.stdout.flush()
                 t_n+=1
                 time.sleep(t_n)
+                if t_n>10 and linux_appium_status() is False:
+                    os.exit("appium start fail")
             print("\n")
             print("Appium is Start")
 

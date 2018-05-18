@@ -8,7 +8,8 @@ from appium import webdriver
 import platform
 sys.path.append("..")
 from conf.appium_config import appium_start
-
+from conf.Systemlanguage import set_utf
+set_utf()
 
 class unlocks(object):
 	"""docstring for lock"""
@@ -17,13 +18,9 @@ class unlocks(object):
 		self.arg = arg
 		self.pg=self.arg.page_source
 	def unlock(self):
-		if "com.android.systemui" in str(self.pg) :
+		s=u"com.android.systemui"
+		ss=self.pg
+		if s in ss :
 			return True
 		else :
 			return False
-
-#test code
-# driver = appium_start()
-# test=unlocks(driver)
-# print test.unlock()
-#test code
