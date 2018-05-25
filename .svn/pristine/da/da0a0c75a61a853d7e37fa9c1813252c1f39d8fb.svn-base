@@ -1,0 +1,90 @@
+;config.ini
+
+[Action]
+Left = com.handwriting.makefont:id/iv_left_action
+Back = com.handwriting.makefont:id/ib_back
+Finish = com.handwriting.makefont:id/iv_finish
+
+[Login]
+Username= 13912345678
+Password= 112233
+El_UserText= com.handwriting.makefont:id/login_phone_num_et
+El_PasswdText= com.handwriting.makefont:id/login_pwd_num_et
+El_Enter = com.handwriting.makefont:id/login_ensure_tv
+
+
+
+[Home]
+El_MobileLogin = com.handwriting.makefont:id/phone_login_iv
+El_WechtLogin = com.handwriting.makefont:id/weixin_login_iv
+El_QQLogin = com.handwriting.makefont:id/qq_login_ll
+El_LoginMain_Agreement = com.handwriting.makefont:id/text_loginmain_agreement
+
+
+El_Head = com.handwriting.makefont:id/marqueeView
+
+;Home: QR
+El_Qr = com.handwriting.makefont:id/iv_QR_code
+
+;Home: search
+El_Search = com.handwriting.makefont:id/iv_global_search
+El_Cancel_Search = com.handwriting.makefont:id/tv_cancel_search
+El_Search_Keyword = com.handwriting.makefont:id/et_search
+El_Search_Change = com.handwriting.makefont:id/tv_change_search_type
+El_Search_User = com.handwriting.makefont:id/ll_user
+
+;Home: Carousel
+El_Carousel = com.handwriting.makefont:id/viewPager
+
+;ad
+El_Ad_Left = com.handwriting.makefont:id/iv_advert1
+El_Ad_Right = com.handwriting.makefont:id/iv_advert2
+
+;Home: more category,more_brand
+El_More_Category = com.handwriting.makefont:id/tv_more_category
+El_More_Brand = com.handwriting.makefont:id/tv_more_brand
+
+;Home: Recommend category
+El_Category1 = com.handwriting.makefont:id/tv_category1
+El_Category2 = com.handwriting.makefont:id/tv_category2
+El_Category3 = com.handwriting.makefont:id/tv_category3
+El_Category4 = com.handwriting.makefont:id/tv_category4
+
+;Home: RECOMMEND BRAND
+EL_Brand1 = com.handwriting.makefont:id/iv_brand1
+El_Brand2 = com.handwriting.makefont:id/iv_brand2
+El_Brand3 = com.handwriting.makefont:id/iv_brand3
+El_brand4 = com.handwriting.makefont:id/iv_brand4
+
+;Home: recommend
+El_TJ = com.handwriting.makefont:id/tv_recommend1
+El_QS = com.handwriting.makefont:id/tv_recommend2
+El_DP = com.handwriting.makefont:id/tv_recommend3
+
+[Category]
+El_Category = com.handwriting.makefont:id/rbCategory
+
+[Publish]
+El_Publish = com.handwriting.makefont:id/ib_publish
+
+[Msg]
+El_Msg = com.handwriting.makefont:id/rbMessage
+
+[Me]
+El_Me = com.handwriting.makefont:id/rbPersonal
+
+[Goods]
+El_User_Image = com.handwriting.makefont:id/iv_user_image
+El_Seller_Name = com.handwriting.makefont:id/tv_seller_name
+El_Publish_Time = com.handwriting.makefont:id/tv_publish_time
+El_Goods_Pic = com.handwriting.makefont:id/ll_goods_pic
+El_Goods_Describe = com.handwriting.makefont:id/tv_goods_describe
+El_Goods_Location = com.handwriting.makefont:id/tv_goods_location
+El_Sale_Price = com.handwriting.makefont:id/tv_sale_price
+
+El_Like_Count = com.handwriting.makefont:id/cb_like_count
+El_Comment_Count = com.handwriting.makefont:id/tv_goods_comment_count
+El_Views_Count = com.handwriting.makefont:id/tv_goods_browse_count
+El_Comment_Content = com.handwriting.makefont:id/ll_goods_comment
+
+El_To_Home = com.handwriting.makefont:id/ll_to_homepage

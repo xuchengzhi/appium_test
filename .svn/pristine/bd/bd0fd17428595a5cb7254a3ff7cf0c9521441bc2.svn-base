@@ -1,0 +1,306 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>手迹造字相关脚本接口文档! &#8212; shoujizaozi_API 1.0 文档</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="id1">
+<h1><strong>手迹造字相关脚本接口文档!</strong><a class="headerlink" href="#id1" title="永久链接至标题">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="module-zuopin">
+<span id="id2"></span><h1>接口列表<a class="headerlink" href="#module-zuopin" title="永久链接至标题">¶</a></h1>
+<dl class="class">
+<dt id="zuopin.works">
+<em class="property">class </em><code class="descclassname">zuopin.</code><code class="descname">works</code><span class="sig-paren">(</span><em>arg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/zuopin.html#works"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#zuopin.works" title="永久链接至目标">¶</a></dt>
+<dd><p>docstring for works
+作品相关接口</p>
+<p>anthor: xuchengzhi</p>
+<dl class="method">
+<dt id="zuopin.works.create_works">
+<code class="descname">create_works</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/zuopin.html#works.create_works"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#zuopin.works.create_works" title="永久链接至目标">¶</a></dt>
+<dd><p>接口名称：创建作品</p>
+<p>加密规则： md5(user_id + md5(sys + t))</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="zuopin.works.get_product_list">
+<code class="descname">get_product_list</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em>, <em>target_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/zuopin.html#works.get_product_list"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#zuopin.works.get_product_list" title="永久链接至目标">¶</a></dt>
+<dd><p>接口名称：获取作品列表</p>
+<p>user_id 当前登录用户id</p>
+<p>target_id 个人主页的用户id，如果是进入自己的个人主页和user_id一样</p>
+<p>加密规则为： md5($t . md5($uid . $target_id) . $sys);</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="zuopin.works.huoqumoban">
+<code class="descname">huoqumoban</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/zuopin.html#works.huoqumoban"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#zuopin.works.huoqumoban" title="永久链接至目标">¶</a></dt>
+<dd><p>接口：获取模板</p>
+<p>参数1: sys 操作系统</p>
+<p>参数2: t 时间戳</p>
+<p>参数3: page 默认第一页,展示10页</p>
+<p>参数4: token 加密后的字符串</p>
+<p>加密规则： md5(g_model . md5($sys . $t) );</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="zuopin.works.report_works">
+<code class="descname">report_works</code><span class="sig-paren">(</span><em>url</em>, <em>target_id</em>, <em>user_id</em>, <em>product_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/zuopin.html#works.report_works"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#zuopin.works.report_works" title="永久链接至目标">¶</a></dt>
+<dd><p>接口： 举报作品</p>
+<p>target_id 被举报人id</p>
+<p>user_id 举报人id</p>
+<p>product_id 作品id</p>
+<p>sys 当前操作系统</p>
+<p>t 时间戳</p>
+<p>token 加密后的字符串</p>
+<p>加密方式：md5($t .$product_id. md5($user_id . $target_id) . $sys)</p>
+<p>anthor ：xuchengzhi</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="zuopin.works.update_works">
+<code class="descname">update_works</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em>, <em>p_id</em>, <em>s_name</em>, <em>s_author</em>, <em>s_size</em>, <em>model_id</em>, <em>ziku_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/zuopin.html#works.update_works"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#zuopin.works.update_works" title="永久链接至目标">¶</a></dt>
+<dd><p>接口名称：更新作品</p>
+<p>加密规则：md5($user_id . md5($sys . $t) . $p_id);</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-Api"></span><dl class="class">
+<dt id="Api.Run">
+<em class="property">class </em><code class="descclassname">Api.</code><code class="descname">Run</code><a class="reference internal" href="_modules/Api.html#Run"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Api.Run" title="永久链接至目标">¶</a></dt>
+<dd><p>接口：处理http请求</p>
+<dl class="method">
+<dt id="Api.Run.url_run">
+<code class="descname">url_run</code><span class="sig-paren">(</span><em>arg1</em>, <em>method</em>, <em>header={'Accept': 'application/json</em>, <em>text/javascript</em>, <em>*/*; q=0.01'</em>, <em>'Accept-Encoding': 'gzip</em>, <em>deflate'</em>, <em>'Accept-Language': 'zh-CN</em>, <em>zh;q=0.8</em>, <em>en-US;q=0.5</em>, <em>en;q=0.3'</em>, <em>'Connection': 'keep-alive'</em>, <em>'User-Agent': 'Safari/5.0 (TestiPhone 7PLUS; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/600.1.4 (KHTML</em>, <em>like Gecko) Version/6.0 MQQBrowser/5.6 Mobile/12A365 Safari/8536.25'</em>, <em>'X-Requested-With': 'XMLHttpRequest'}</em>, <em>**dictArg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Api.html#Run.url_run"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#Api.Run.url_run" title="永久链接至目标">¶</a></dt>
+<dd><p>接口名称：发送http请求，参数名arg1：接口名称，参数名method：请求方式，参数**dictArg：请求内容(字典dict)</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-scan_qr"></span><dl class="function">
+<dt id="scan_qr.scan">
+<code class="descclassname">scan_qr.</code><code class="descname">scan</code><span class="sig-paren">(</span><em>file</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/scan_qr.html#scan"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#scan_qr.scan" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：识别二维码</p>
+<p>使用方法：调用scan 传入文件路径名称‘001.jpg’</p>
+<p>author ：xuchengzhi</p>
+</dd></dl>
+
+<span class="target" id="module-handwriting_api"></span><dl class="function">
+<dt id="handwriting_api.ceshi_ziti">
+<code class="descclassname">handwriting_api.</code><code class="descname">ceshi_ziti</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em>, <em>update_ziku</em>, <em>num</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#ceshi_ziti"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.ceshi_ziti" title="永久链接至目标">¶</a></dt>
+<dd><blockquote>
+<div>测试获取字体接口状态多久会变为2或5</div></blockquote>
+<p>#</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.create_works">
+<code class="descclassname">handwriting_api.</code><code class="descname">create_works</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#create_works"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.create_works" title="永久链接至目标">¶</a></dt>
+<dd><p>加密规则： md5(user_id + md5(sys + t))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.dianzan">
+<code class="descclassname">handwriting_api.</code><code class="descname">dianzan</code><span class="sig-paren">(</span><em>url</em>, <em>ziku_id</em>, <em>user_id</em>, <em>sys</em>, <em>t_time</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#dianzan"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.dianzan" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：点赞</p>
+<p>加密规则为： md5($sys . md5($user_id . $ziku_id) . $t)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.edit_brushinfo">
+<code class="descclassname">handwriting_api.</code><code class="descname">edit_brushinfo</code><span class="sig-paren">(</span><em>url</em>, <em>ziku_id</em>, <em>brush_width</em>, <em>brush_type</em>, <em>mode</em>, <em>t_time</em>, <em>sys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#edit_brushinfo"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.edit_brushinfo" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：编辑笔形
+加密规则为：md5($t . md5($zikuid . $sys))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.edit_zikuinfo">
+<code class="descclassname">handwriting_api.</code><code class="descname">edit_zikuinfo</code><span class="sig-paren">(</span><em>url</em>, <em>ziku_id</em>, <em>ziku_name</em>, <em>ziku_desc</em>, <em>bg_num</em>, <em>t_time</em>, <em>sys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#edit_zikuinfo"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.edit_zikuinfo" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：编辑字体信息</p>
+<p>加密规则为：md5($sys . md5($zikuid . $t))</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.fonttounicode">
+<code class="descclassname">handwriting_api.</code><code class="descname">fonttounicode</code><span class="sig-paren">(</span><em>*msglist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#fonttounicode"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.fonttounicode" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：汉字转unicode，传值类型list</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.get_newstate">
+<code class="descclassname">handwriting_api.</code><code class="descname">get_newstate</code><span class="sig-paren">(</span><em>url</em>, <em>ziti_id</em>, <em>goal_num</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#get_newstate"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.get_newstate" title="永久链接至目标">¶</a></dt>
+<dd><p>获取字体状态接口
+1、第一个参数是url，第二个参数是字体id，第三个参数是目标数</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.get_product_list">
+<code class="descclassname">handwriting_api.</code><code class="descname">get_product_list</code><span class="sig-paren">(</span><em>user_id</em>, <em>target_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#get_product_list"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.get_product_list" title="永久链接至目标">¶</a></dt>
+<dd><p>加密规则为： md5($t . md5($uid . $target_id) . $sys);</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.login">
+<code class="descclassname">handwriting_api.</code><code class="descname">login</code><span class="sig-paren">(</span><em>url</em>, <em>login_name</em>, <em>user_pwd</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#login"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.login" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：手机号登录</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.recommend_list">
+<code class="descclassname">handwriting_api.</code><code class="descname">recommend_list</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em>, <em>dynamic_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#recommend_list"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.recommend_list" title="永久链接至目标">¶</a></dt>
+<dd><p>#
+#推荐动态
+#</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.s_ziku">
+<code class="descclassname">handwriting_api.</code><code class="descname">s_ziku</code><span class="sig-paren">(</span><em>url</em>, <em>t_time</em>, <em>user_id</em>, <em>goal_num</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#s_ziku"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.s_ziku" title="永久链接至目标">¶</a></dt>
+<dd><p>该接口加密规则为： md5($user_id . md5($sys . $t) . $style_id)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.share_count">
+<code class="descclassname">handwriting_api.</code><code class="descname">share_count</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em>, <em>ziku_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#share_count"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.share_count" title="永久链接至目标">¶</a></dt>
+<dd><p># md5($user_id . md5($sys . $t) . $ziku_id)</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.sixteen_to_ten">
+<code class="descclassname">handwriting_api.</code><code class="descname">sixteen_to_ten</code><span class="sig-paren">(</span><em>num</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#sixteen_to_ten"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.sixteen_to_ten" title="永久链接至目标">¶</a></dt>
+<dd><p>方法： 十六进制转十进制，传值int</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.tentofont">
+<code class="descclassname">handwriting_api.</code><code class="descname">tentofont</code><span class="sig-paren">(</span><em>*msglist</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#tentofont"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.tentofont" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：十进制转汉字，传值类型list</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.unicode_to_font">
+<code class="descclassname">handwriting_api.</code><code class="descname">unicode_to_font</code><span class="sig-paren">(</span><em>num</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#unicode_to_font"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.unicode_to_font" title="永久链接至目标">¶</a></dt>
+<dd><p>方法：unicode转汉字，传值str</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.update_works">
+<code class="descclassname">handwriting_api.</code><code class="descname">update_works</code><span class="sig-paren">(</span><em>url</em>, <em>user_id</em>, <em>p_id</em>, <em>s_name</em>, <em>s_author</em>, <em>s_size</em>, <em>model_id</em>, <em>ziku_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#update_works"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.update_works" title="永久链接至目标">¶</a></dt>
+<dd><p>md5($user_id . md5($sys . $t) . $p_id);</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.update_ziku">
+<code class="descclassname">handwriting_api.</code><code class="descname">update_ziku</code><span class="sig-paren">(</span><em>user_id</em>, <em>ziku_id</em>, <em>complete_count</em>, <em>step</em>, <em>t_time</em>, <em>sys</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#update_ziku"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.update_ziku" title="永久链接至目标">¶</a></dt>
+<dd><dl class="docutils">
+<dt>接口：更新字体</dt>
+<dd>md5($user_id . md5($system . $t) . $ziku_id);</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="handwriting_api.upload_camera">
+<code class="descclassname">handwriting_api.</code><code class="descname">upload_camera</code><span class="sig-paren">(</span><em>url</em>, <em>num</em>, <em>user_id</em>, <em>ziku_id</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/handwriting_api.html#upload_camera"><span class="viewcode-link">[源代码]</span></a><a class="headerlink" href="#handwriting_api.upload_camera" title="永久链接至目标">¶</a></dt>
+<dd><p>#url,complete_count,imgcontent,t_time,user_id,ziku_id,num
+#更新拍照字体
+#</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id3">
+<h1>目录索引<a class="headerlink" href="#id3" title="永久链接至标题">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">索引</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">模块索引</span></a></li>
+<li><a class="reference internal" href="search.html"><span class="std std-ref">搜索页面</span></a></li>
+</ul>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">內容目录</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><strong>手迹造字相关脚本接口文档!</strong></a></li>
+<li><a class="reference internal" href="#module-zuopin">接口列表</a></li>
+<li><a class="reference internal" href="#id3">目录索引</a></li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>本页</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">显示源代码</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="转向" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2018, xuchengzhi.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.7.4</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,0 +1,145 @@
+[denglu]
+El_UserText= 13912345678
+El_PasswdText= 112233
+El_Username= com.handwriting.makefont:id/login_phone_num_et
+El_Password= com.handwriting.makefont:id/login_pwd_num_et
+El_Enter = com.handwriting.makefont:id/login_ensure_tv
+El_FindPw = com.handwriting.makefont:id/login_forgot_pwd_tv
+El_Register = com.handwriting.makefont:id/head_right_register
+El_Back = com.handwriting.makefont:id/head_back_img
+
+[shouye]
+El_Home = com.handwriting.makefont:id/layout_main_tab_create
+El_MobileLogin = com.handwriting.makefont:id/phone_login_iv
+El_WechtLogin = com.handwriting.makefont:id/weixin_login_iv
+El_QQLogin = com.handwriting.makefont:id/qq_login_ll
+El_LoginMain_Agreement = com.handwriting.makefont:id/text_loginmain_agreement
+El_CreateFont = com.handwriting.makefont:id/layout_main_tab_add
+El_Find = com.handwriting.makefont:id/fragment_main_index_search
+El_Discover = 
+El_Hot = 
+El_Follow = 
+El_Fonts = com.handwriting.makefont:id/layout_main_tab_event
+El_Messge = com.handwriting.makefont:id/layout_main_tab_msg_inner
+El_Personal = com.handwriting.makefont:id/layout_main_tab_mine
+
+[geren]
+El_UpdateInfo = com.handwriting.makefont:id/img_mine_head
+El_FollowList = com.handwriting.makefont:id/fragment_main_mine_favourite
+El_Fans = com.handwriting.makefont:id/fragment_main_mine_fans
+El_MyFonts = com.handwriting.makefont:id/layout_mine_font
+El_DownloadFonts = com.handwriting.makefont:id/layout_others_font
+El_About = com.handwriting.makefont:id/layout_mine_about
+El_Settings = com.handwriting.makefont:id/layout_mine_setting
+
+[shouji]
+El_CheckAll = com.handwriting.makefont:id/tv_enter_all
+El_FontView = com.handwriting.makefont:id/iv_cover
+El_Advertisement = com.handwriting.makefont:id/show_tips_iv
+
+[xiaoxi]
+El_MessgeDetail = com.handwriting.makefont:id/text_item_message_msg
+
+[remen]
+El_FontInfoFace = com.handwriting.makefont:id/font_owner_avatar
+El_FontDetail = com.handwriting.makefont:id/font_generate_font_iv
+El_FontFollow = com.handwriting.makefont:id/relation_iv
+El_FontShare = com.handwriting.makefont:id/favor_share_iv
+El_FontLike = com.handwriting.makefont:id/dian_zan_rl
+
+[faxian]
+El_Banner = com.handwriting.makefont:id/bannerViewPager
+El_HotRecommend = com.handwriting.makefont:id/tv_hot_recommend
+El_LatestFont = com.handwriting.makefont:id/tv_latest_font
+El_FontCover = com.handwriting.makefont:id/hot_font_face_iv
+El_FontLike = com.handwriting.makefont:id/hot_dian_zan_iv
+El_FontDown = com.handwriting.makefont:id/hot_down_load_iv
+
+[chuangjianrukou]
+El_WriteFont = com.handwriting.makefont:id/activity_main_create_writing
+El_CameraFont1 = com.handwriting.makefont:id/activity_main_create_pager_pen 
+El_CameraFont2 = com.handwriting.makefont:id/activity_main_create_pager_brush
+El_Works = com.handwriting.makefont:id/activity_main_create_note
+
+[guanzhudongtai]
+El_FollowFontCover = com.handwriting.makefont:id/font_generate_font_iv
+El_FollowFontFace = com.handwriting.makefont:id/font_owner_avatar
+El_FollowFontLike = com.handwriting.makefont:id/dian_zan_rl
+El_FollowFontShare = com.handwriting.makefont:id/favor_share_iv
+
+[fanhui]
+El_Back = com.handwriting.makefont:id/head_back_img
+
+[H5]
+El_H5ScreenShare = com.handwriting.makefont:id/head_right_cut
+El_H5Share = com.handwriting.makefont:id/img_opera_htmlshare
+El_H5FontDown = com.handwriting.makefont:id/font_download_desc_tv
+El_H5CallBack = com.handwriting.makefont:id/font_detail_feed_back
+
+[pingmushouxiexiangqing]
+El_WriteFontSave = com.handwriting.makefont:id/btn_save
+El_WriteNext = com.handwriting.makefont:id/writing_next_num
+El_WritePrevious = com.handwriting.makefont:id/layout_writing_last_num
+El_WriteReWrite = com.handwriting.makefont:id/writing_redo
+El_WriteSettin = com.handwriting.makefont:id/writing_opera
+El_WritePreview = com.handwriting.makefont:id/prev_font
+El_WriteManuscript = com.handwriting.makefont:id/generate_font
+El_WriteGenerate = com.handwriting.makefont:id/get_font
+
+[paizhaoxiangqing]
+El_CamreNotCompelte = com.handwriting.makefont:id/negativeButton
+El_CamreComplete = com.handwriting.makefont:id/positiveButton
+El_CamreModelDown = com.handwriting.makefont:id/img_opera_copypicshow
+El_SingleCamreFont = com.handwriting.makefont:id/font_sample_image
+El_CamreCatalog = com.handwriting.makefont:id/text_cameradetail_bottom_preview
+El_CamreFontModelScan = com.handwriting.makefont:id/text_cameradetail_bottom_takepic
+El_CamreFontGenerate = com.handwriting.makefont:id/text_cameradetail_bottom_getttf
+El_CamreHelp = com.handwriting.makefont:id/help_rl
+
+[wodeziti]
+El_FontAdmin = com.handwriting.makefont:id/head_admin
+El_Writeing = com.handwriting.makefont:id/fonts_writing_bt
+El_FontComplete = com.handwriting.makefont:id/fonts_writen_bt
+El_FontCover = com.handwriting.makefont:id/content
+
+[fensi]
+El_Fonshead = com.handwriting.makefont:id/img_portrait
+
+[guanzhuren]
+El_GuanzhuBtn = com.handwriting.makefont:id/ll_relation
+
+[guanzhulibie]
+El_Fonshead = com.handwriting.makefont:id/img_portrait
+
+[zhuce]
+El_Phonenum = com.handwriting.makefont:id/register_phone_num_et
+El_RegisterFixText = com.handwriting.makefont:id/register_fix_num_et
+El_RegisterFixButton = com.handwriting.makefont:id/register_send_fix_num_tv
+El_RegisterPw = com.handwriting.makefont:id/register_pwd_et
+El_RegisterFinish = com.handwriting.makefont:id/register_finished_tv
+
+[shouixieshezhi]
+El_xiayibu = com.handwriting.makefont:id/btn_save
+El_bitouyangshi = com.handwriting.makefont:id/rb_pen_style
+El_bitoudaxiao = com.handwriting.makefont:id/rb_pen_thickness
+El_shuxiemoshi = com.handwriting.makefont:id/rb_pen_write_style
+El_zitimingcheng = com.handwriting.makefont:id/create_font_name_et
+El_zitijianjie = com.handwriting.makefont:id/font_desc_et
+El_898 = com.handwriting.makefont:id/target_898
+El_100 = com.handwriting.makefont:id/target_100
+El_300 = com.handwriting.makefont:id/target_300
+El_500 = com.handwriting.makefont:id/target_500
+El_1851 = com.handwriting.makefont:id/target_1851
+El_6886 = com.handwriting.makefont:id/target_6886
+El_qiehuanfengmian = com.handwriting.makefont:id/change_bg_ll
+El_kaishixiezi = com.handwriting.makefont:id/create_font_bt
+
+[bitouyangshi]
+El_yuantou = com.handwriting.makefont:id/brush_iv
+El_xiuli = com.handwriting.makefont:id/brush_iv
+El_langhao = com.handwriting.makefont:id/brush_iv
+El_yanghao = com.handwriting.makefont:id/brush_iv
+El_gangbi = com.handwriting.makefont:id/brush_iv
+El_qianbi = com.handwriting.makefont:id/brush_iv
+
+[zuopin]
