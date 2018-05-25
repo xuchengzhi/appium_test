@@ -7,8 +7,9 @@ import os
 import sys
 import time
 from conf.check_py_model import checkmodel
-checkmodel()
+# checkmodel()
 import unittest
+import HTMLTestRunner
 from configparser import ConfigParser
 from selenium import webdriver
 from appium import webdriver
@@ -96,7 +97,10 @@ class ProductInformation(unittest.TestCase):
     def tearDownClass(self):
         self.driver.quit()
         print("app quit")
-
+    @classmethod
+    def clearcache(self):
+        from conf.Clearcache import clear_ 
+        clear_()
 # texture Testcase
 def suite_goods():
     tests = [
@@ -113,4 +117,9 @@ if __name__ == "__main__":
     create_file(home_path).shanchu("screen")
     time.sleep(1)
     create_file(home_path).mk("screen")
-    unittest.TextTestRunner(verbosity=2).run(suite_goods())
+    # unittest.TextTestRunner(verbosity=2).run()
+    fp=open("app_run_result/result_"+nowtime+".html",'wb')
+    runner=HTMLTestRunner.HTMLTestRunner(stream=fp,title='手迹造字自动化测试报告',description=u'测试结果:') 
+    runner.run(suite_goods(),home_path+"/screen")#使用自定义模板需要传截图路径
+    runner.getReportPic()
+    fp.close()

@@ -39,6 +39,7 @@ class create_file(object):
 			os.mkdir(file_path)
 	def shanchu(self,name):
 		file_path=self.arg+"/"+name
+		print file_path
 		try:
 			shutil.rmtree(file_path)
 		except Exception, e:

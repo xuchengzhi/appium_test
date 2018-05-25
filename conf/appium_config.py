@@ -87,6 +87,7 @@ def appium_start():
                     os.exit("appium start fail")
             print("\n")
             print("Appium is Start")
+            time.sleep(5)
 
     config = {
         'platformName':'Android',
@@ -103,5 +104,4 @@ def appium_start():
     try:
           return webdriver.Remote('http://localhost:4723/wd/hub', config)
     except Exception, e:
-          os.exit("appium error please restart") 
-    
+          sys.exit("appium error please restart") 

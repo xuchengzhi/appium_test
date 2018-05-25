@@ -6,6 +6,7 @@
 import os
 import sys
 import time
+import random
 from configparser import ConfigParser
 from selenium import webdriver
 from appium import webdriver
@@ -56,19 +57,18 @@ class El_chuangjianziti(object):
 		el_send_keys(self.arg,cfg.get("shouixieshezhi","El_zitimingcheng"),fontname.decode("utf-8"))
 		el_id_click(self.arg,cfg.get("shouixieshezhi","El_zitijianjie"))
 		el_send_keys(self.arg,cfg.get("shouixieshezhi","El_zitijianjie"),summary.decode("utf-8"))
-		el_id_click(self.arg,cfg.get("shouixieshezhi","El_100"))
+		mubiaolist=["El_898","El_100","El_300","El_500","El_1851","El_6886"]
+		mubiao=random.sample(mubiaolist,1)
+		el_id_click(self.arg,cfg.get("shouixieshezhi",str(mubiao[0])))
 		screenshot(self.arg,"shezhizitixinxi")
 		el_id_click(self.arg,cfg.get("shouixieshezhi","El_kaishixiezi"))
 		time.sleep(2)
-		screenshot(self.arg,"kaishixiezi")
+		screenshot(self.arg,"dianjikaishixiezi")
 		time.sleep(2)
 		f=open(home_path+"/"+log_.get('log','path')+"/chuangjianziti.xml","w")
 		f.write(changecode(self.arg.page_source))
 		f.close()
 		pgs=(changecode(self.arg.page_source))
-		print(type(pgs))
-		print("*"*10)
-		print(pgs)
 		time.sleep(2)
 		screenshot(self.arg,"huidaoshouye")
 	def camrefont_pen(self,fontname):
@@ -82,7 +82,6 @@ class El_chuangjianziti(object):
 		time.sleep(5)
 		print(self.arg.page_source)
 		screenshot(self.arg,"camrefont_brush")
-		
 	def works(self):
 		el_id_click(self.arg,cfg.get('chuangjianrukou','el_works'))
 		time.sleep(5)

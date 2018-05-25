@@ -4,3 +4,4 @@ configparser
 requests
 beautifulsoup4
 prettytable
+HTMLTestRunner
