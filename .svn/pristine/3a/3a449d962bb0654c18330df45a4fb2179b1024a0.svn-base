@@ -1,0 +1,17 @@
+0000000000000000000000000000000000000000 eb1033bd8969dda2cf73a05ba6a0d0009fc1914d xuchengzhi <xudear@live.com> 1526529654 +0800	commit (initial): AppiumTest_shoujizaozi
+eb1033bd8969dda2cf73a05ba6a0d0009fc1914d eb1033bd8969dda2cf73a05ba6a0d0009fc1914d xuchengzhi <xudear@live.com> 1526529683 +0800	checkout: moving from master to V1.0
+eb1033bd8969dda2cf73a05ba6a0d0009fc1914d e44efa27d304c91663eb3b8728aaea9ffd2e8bd8 xuchengzhi <xudear@live.com> 1526530638 +0800	commit: 测试脚本
+e44efa27d304c91663eb3b8728aaea9ffd2e8bd8 58ec50ad59bbafd1eb97cbdf15949fad64728796 xuchengzhi <xudear@live.com> 1526531303 +0800	commit: 修改adb设备检测输出
+58ec50ad59bbafd1eb97cbdf15949fad64728796 d48f7bcce0a6d721412ad9b7334c022b9bdd1950 xuchengzhi <xudear@live.com> 1526542202 +0800	commit: 全局编码方式配置conf.Systemlanguage import set_utf
+d48f7bcce0a6d721412ad9b7334c022b9bdd1950 6ba25e0f30b2c72d1fc71a32f6812eca48e56b7d xuchengzhi <xudear@live.com> 1526549696 +0800	commit: 更新初始化文件
+6ba25e0f30b2c72d1fc71a32f6812eca48e56b7d 60f9f4046bd5039b75d13db4811aca6ece6b58fc xuchengzhi <xudear@live.com> 1526551031 +0800	commit: 更新可单独启动activity的apk
+60f9f4046bd5039b75d13db4811aca6ece6b58fc b5c4bfb994ed249eb1f57e38dd38f05aaf9bf659 xuchengzhi <xudear@live.com> 1526614400 +0800	commit: 修改linux环境appium命令错误的问题
+b5c4bfb994ed249eb1f57e38dd38f05aaf9bf659 b5c4bfb994ed249eb1f57e38dd38f05aaf9bf659 xuchengzhi <xudear@live.com> 1526614650 +0800	checkout: moving from V1.0 to V1.1
+b5c4bfb994ed249eb1f57e38dd38f05aaf9bf659 6bf2b61f0cd0544582aa7faaa21c317e21ea1271 xuchengzhi <xudear@live.com> 1526624969 +0800	commit: 增加生成汉字方法
+6bf2b61f0cd0544582aa7faaa21c317e21ea1271 ebaad29a7fb4d06ca3d2353c13dc880027bcf3c1 xuchengzhi <xudear@live.com> 1526625009 +0800	commit: 增加生成汉字方法
+ebaad29a7fb4d06ca3d2353c13dc880027bcf3c1 ebaad29a7fb4d06ca3d2353c13dc880027bcf3c1 xuchengzhi <xudear@live.com> 1527210308 +0800	checkout: moving from V1.1 to test
+ebaad29a7fb4d06ca3d2353c13dc880027bcf3c1 da0cb1f1af40df83f51089f572a652fa26ffa79e xuchengzhi <xudear@live.com> 1527210326 +0800	commit: test
+da0cb1f1af40df83f51089f572a652fa26ffa79e fc99e756adb25995ca537f6fba1a92b586938931 xuchengzhi <xudear@live.com> 1527210739 +0800	commit: test
+fc99e756adb25995ca537f6fba1a92b586938931 4b3979bf46ab3b23b2faf88b525ac19e555c313f xuchengzhi <xudear@live.com> 1527210954 +0800	commit: test
+4b3979bf46ab3b23b2faf88b525ac19e555c313f 4b3979bf46ab3b23b2faf88b525ac19e555c313f xuchengzhi <xudear@live.com> 1527240627 +0800	checkout: moving from test to V1.2
+4b3979bf46ab3b23b2faf88b525ac19e555c313f eb360af16e655ac5c405ac478f2338ed4f441a82 xuchengzhi <xudear@live.com> 1527240854 +0800	commit: V1.2

@@ -10,7 +10,8 @@ from time import sleep
 import datetime
 import shutil
 from configparser import ConfigParser
-import psutil
+
+
 
 _path=os.getcwd()
 home_path = os.path.dirname(_path)
@@ -22,19 +23,9 @@ log_A.read("../conf/logs_conf.ini", encoding='utf-8')
 
 
 
-
+nowtime=datetime.datetime.now().strftime("%Y%m%d%H%M%S")
 def back():
 	os.system("adb shell input keyevent 4")
-
-def record(filename):
-	print("start record")
-	ss=os.system("start cmd /k adb shell screenrecord   /sdcard/{}.mp4".format(filename))#--time-limit 60
-	print("pull file")
-
-	
-
-
-	
 
 class create_file(object):
 	"""docstring for Move"""
@@ -88,14 +79,3 @@ class get_xml(object):
 					resource_list.append(resource_id)
 					text_list.append(text_)
 		return {"resource_id":resource_list,"text_list":text_list}
-def judgeprocess(processname):
-
-    pl = psutil.pids()
-    for pid in pl:
-        if psutil.Process(pid).name() == processname:
-            return(pid)
-            # break
-    else:
-        print("not found")
-# print(os.system('tasklist'))
-# judgeprocess('adb.exe')

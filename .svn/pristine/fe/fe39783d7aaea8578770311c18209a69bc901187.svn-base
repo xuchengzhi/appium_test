@@ -171,7 +171,7 @@ if __name__ == "__main__":
         time.sleep(2)
         os.system('taskkill /im adb.exe /F')
         os.system('adb pull /sdcard/{}.mp4 {}'.format(nowtime,home_path+"/screen"))
-        sys.exit()
+    
     # fp=open("app_run_result/result_"+nowtime+".html",'wb')
     # runner=HTMLTestRunner(stream=fp,title='手迹造字自动化测试报告',description=u'测试结果:') 
     # runner.run(suite_goods())#使用自定义模板需要传截图路径
